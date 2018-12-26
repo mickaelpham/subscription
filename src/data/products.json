@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Support",
+    "description": "Zendesk Support for all your business needs"
+  },
+  {
+    "id": 2,
+    "name": "Chat",
+    "description": "Zendesk Chat for all your business needs"
+  }
+]

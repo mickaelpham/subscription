@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "Essential",
+    "product_id": 1,
+    "pricing": {
+      "month": 9,
+      "year": 5
+    }
+  },
+  {
+    "id": 2,
+    "name": "Team",
+    "product_id": 1,
+    "pricing": {
+      "month": 19,
+      "year": 25
+    }
+  },
+  {
+    "id": 3,
+    "name": "Professional",
+    "product_id": 1,
+    "pricing": {
+      "month": 49,
+      "year": 59
+    }
+  },
+  {
+    "id": 4,
+    "name": "Enterprise",
+    "product_id": 1,
+    "pricing": {
+      "month": 99,
+      "year": 125
+    }
+  },
+  {
+    "id": 5,
+    "name": "Lite",
+    "product_id": 2,
+    "pricing": {
+      "month": 0,
+      "year": 0
+    }
+  },
+  {
+    "id": 6,
+    "name": "Professional",
+    "product_id": 2,
+    "pricing": {
+      "month": 15,
+      "year": 19
+    }
+  },
+  {
+    "id": 7,
+    "name": "Enterprise",
+    "product_id": 2,
+    "pricing": {
+      "month": 29,
+      "year": 34
+    }
+  }
+]
