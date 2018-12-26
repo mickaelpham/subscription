@@ -3,10 +3,6 @@ import Price from "./Price";
 import plansData from "../data/plans.json";
 import "./ProductCard.css";
 
-const calculatePrice = (quantity, selectedPlan) => {
-  return quantity * selectedPlan.pricing.month;
-};
-
 class ProductCard extends React.Component {
   state = { quantity: 1, plans: [], selectedPlan: null, price: null };
 
@@ -14,24 +10,38 @@ class ProductCard extends React.Component {
     const { product } = this.props;
     const plans = plansData.filter(plan => plan.product_id === product.id);
     const selectedPlan = plans[0];
-    const price = calculatePrice(this.state.quantity, selectedPlan);
+    const price = this.calculatePrice(this.state.quantity, selectedPlan);
 
     this.setState({ plans, selectedPlan, price });
   }
 
   onQuantityChange = event => {
     const quantity = event.target.value;
-    const price = calculatePrice(quantity, this.state.selectedPlan);
+    const { selectedPlan } = this.state;
+    const price = this.calculatePrice(quantity, selectedPlan);
 
-    this.setState({ quantity, price });
+    this.setState({ quantity, price }, this.onChange);
   };
 
   onPlanChange = event => {
     const planId = parseInt(event.target.value);
     const selectedPlan = plansData.find(plan => plan.id === planId);
-    const price = calculatePrice(this.state.quantity, selectedPlan);
+    const price = this.calculatePrice(this.state.quantity, selectedPlan);
 
-    this.setState({ selectedPlan, price });
+    this.setState({ selectedPlan, price }, this.onChange);
+  };
+
+  onChange() {
+    const { quantity, selectedPlan, price } = this.state;
+    const { product, onChange } = this.props;
+    const productId = product.id;
+    const name = `${product.name} ${selectedPlan.name}`;
+
+    onChange({ name, quantity, price, productId });
+  }
+
+  calculatePrice = (quantity, selectedPlan) => {
+    return quantity * selectedPlan.pricing[this.props.billingCycle];
   };
 
   render() {
@@ -73,7 +83,7 @@ class ProductCard extends React.Component {
             </div>
           </div>
           <div className="column price">
-            <Price value={this.state.price} />
+            <Price value={this.state.price} showFree={true} />
           </div>
         </div>
       </div>
