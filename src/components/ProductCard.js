@@ -12,11 +12,16 @@ class ProductCard extends React.Component {
     const selectedPlan = plans[0];
     const price = this.calculatePrice(this.state.quantity, selectedPlan);
 
-    this.setState({ plans, selectedPlan, price });
+    this.setState({ plans, selectedPlan, price }, this.onChange);
   }
 
   onQuantityChange = event => {
     const quantity = event.target.value;
+
+    if (quantity <= 0) {
+      return;
+    }
+
     const { selectedPlan } = this.state;
     const price = this.calculatePrice(quantity, selectedPlan);
 

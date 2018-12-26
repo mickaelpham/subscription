@@ -61,5 +61,41 @@
       "month": 29,
       "year": 34
     }
+  },
+  {
+    "id": 8,
+    "name": "Lite",
+    "product_id": 3,
+    "pricing": {
+      "month": 0,
+      "year": 0
+    }
+  },
+  {
+    "id": 9,
+    "name": "Team",
+    "product_id": 3,
+    "pricing": {
+      "month": 14,
+      "year": 19
+    }
+  },
+  {
+    "id": 10,
+    "name": "Professional",
+    "product_id": 3,
+    "pricing": {
+      "month": 29,
+      "year": 35
+    }
+  },
+  {
+    "id": 11,
+    "name": "Enterprise",
+    "product_id": 3,
+    "pricing": {
+      "month": 59,
+      "year": 70
+    }
   }
 ]
