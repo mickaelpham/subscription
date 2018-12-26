@@ -43,7 +43,7 @@ class App extends React.Component {
 
     return (
       <ProductList
-        billingCycle="month"
+        billingPeriod="month"
         products={this.state.products}
         onProductChange={this.onProductChange}
       />

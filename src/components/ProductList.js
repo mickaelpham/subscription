@@ -2,12 +2,12 @@ import React from "react";
 import ProductCard from "./ProductCard";
 
 const ProductList = props => {
-  const { billingCycle, onProductChange } = props;
+  const { billingPeriod, onProductChange } = props;
   const products = props.products.map(product => {
     return (
       <ProductCard
         product={product}
-        billingCycle={billingCycle}
+        billingPeriod={billingPeriod}
         key={product.id}
         onChange={onProductChange}
       />

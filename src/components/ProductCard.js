@@ -46,7 +46,7 @@ class ProductCard extends React.Component {
   }
 
   calculatePrice = (quantity, selectedPlan) => {
-    return quantity * selectedPlan.pricing[this.props.billingCycle];
+    return quantity * selectedPlan.pricing[this.props.billingPeriod];
   };
 
   render() {
