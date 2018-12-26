@@ -4,15 +4,35 @@ import plansData from "../data/plans.json";
 import "./ProductCard.css";
 
 class ProductCard extends React.Component {
-  state = { quantity: 1, plans: [], selectedPlan: null, price: null };
+  state = {
+    quantity: 1,
+    plans: [],
+    selectedPlan: null,
+    price: null
+  };
 
   componentDidMount() {
-    const { product } = this.props;
+    const { product, billingPeriod } = this.props;
+    const { quantity } = this.state;
     const plans = plansData.filter(plan => plan.product_id === product.id);
     const selectedPlan = plans[0];
-    const price = this.calculatePrice(this.state.quantity, selectedPlan);
+    const price = this.calculatePrice(quantity, selectedPlan, billingPeriod);
 
     this.setState({ plans, selectedPlan, price }, this.onChange);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.billingPeriod === this.props.billingPeriod) {
+      return;
+    }
+
+    const price = this.calculatePrice(
+      nextState.quantity,
+      nextState.selectedPlan,
+      nextProps.billingPeriod
+    );
+
+    this.setState({ price }, this.onChange);
   }
 
   onQuantityChange = event => {
@@ -22,8 +42,8 @@ class ProductCard extends React.Component {
       return;
     }
 
-    const { selectedPlan } = this.state;
-    const price = this.calculatePrice(quantity, selectedPlan);
+    const { selectedPlan, billingPeriod } = this.state;
+    const price = this.calculatePrice(quantity, selectedPlan, billingPeriod);
 
     this.setState({ quantity, price }, this.onChange);
   };
@@ -31,7 +51,12 @@ class ProductCard extends React.Component {
   onPlanChange = event => {
     const planId = parseInt(event.target.value);
     const selectedPlan = plansData.find(plan => plan.id === planId);
-    const price = this.calculatePrice(this.state.quantity, selectedPlan);
+
+    const price = this.calculatePrice(
+      this.state.quantity,
+      selectedPlan,
+      this.props.billingPeriod
+    );
 
     this.setState({ selectedPlan, price }, this.onChange);
   };
@@ -45,9 +70,9 @@ class ProductCard extends React.Component {
     onChange({ name, quantity, price, productId });
   }
 
-  calculatePrice = (quantity, selectedPlan) => {
-    return quantity * selectedPlan.pricing[this.props.billingPeriod];
-  };
+  calculatePrice(quantity, selectedPlan, billingPeriod) {
+    return quantity * selectedPlan.pricing[billingPeriod];
+  }
 
   render() {
     const { product } = this.props;

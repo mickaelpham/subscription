@@ -4,7 +4,7 @@ import products from "../data/products.json";
 import SummaryPane from "./SummaryPane";
 
 class App extends React.Component {
-  state = { products: [], summaries: [] };
+  state = { products: [], summaries: [], billingPeriod: "year" };
 
   componentDidMount() {
     setTimeout(this.setProducts, 1000);
@@ -30,6 +30,10 @@ class App extends React.Component {
     this.setState({ summaries });
   };
 
+  onBillingPeriodChange = billingPeriod => {
+    this.setState({ billingPeriod });
+  };
+
   renderProducts() {
     const { products } = this.state;
 
@@ -43,7 +47,7 @@ class App extends React.Component {
 
     return (
       <ProductList
-        billingPeriod="month"
+        billingPeriod={this.state.billingPeriod}
         products={this.state.products}
         onProductChange={this.onProductChange}
       />
@@ -56,7 +60,11 @@ class App extends React.Component {
         <div className="columns">
           <div className="column">{this.renderProducts()}</div>
           <div className="column is-one-third">
-            <SummaryPane summaries={this.state.summaries} />
+            <SummaryPane
+              summaries={this.state.summaries}
+              billingPeriod={this.state.billingPeriod}
+              onChange={this.onBillingPeriodChange}
+            />
           </div>
         </div>
       </div>

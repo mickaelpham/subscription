@@ -3,6 +3,15 @@ import SummaryProduct from "./SummaryProduct";
 import Price from "./Price";
 
 class SummaryPane extends React.Component {
+  state = { billingPeriod: this.props.billingPeriod };
+
+  onBillingPeriodChange = e => {
+    const billingPeriod = e.target.value;
+    this.setState({ billingPeriod });
+
+    this.props.onChange(billingPeriod);
+  };
+
   render() {
     const summaries = this.props.summaries.map(summary => {
       return <SummaryProduct summary={summary} key={summary.productId} />;
@@ -16,6 +25,28 @@ class SummaryPane extends React.Component {
       <div className="section">
         <div className="box">
           <h4 className="title is-4">Summary</h4>
+
+          <div className="field">
+            <div className="columns is-vcentered">
+              <div className="column">
+                <label className="label">Billing Period</label>
+              </div>
+              <div className="column">
+                <div className="control">
+                  <div className="select is-fullwidth">
+                    <select
+                      onChange={this.onBillingPeriodChange}
+                      value={this.state.billingPeriod}
+                    >
+                      <option value="month">Month</option>
+                      <option value="year">Year</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {summaries}
           <div className="columns has-text-weight-bold">
             <div className="column">Total</div>
