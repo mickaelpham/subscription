@@ -2,19 +2,32 @@
 import React from "react";
 
 const Price = props => {
+  const { showFree, value, billingPeriod } = props;
+
+  if (showFree && value === 0) {
+    return <>Free</>;
+  }
+
   const formattedPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD"
   }).format(props.value);
 
-  const showFree = props.showFree && props.value === 0;
+  if (billingPeriod) {
+    return (
+      <>
+        {formattedPrice} / {billingPeriod}
+      </>
+    );
+  }
 
-  return showFree ? <>Free</> : <>{formattedPrice}</>;
+  return <>{formattedPrice}</>;
 };
 
 Price.defaultProps = {
   showFree: false,
-  value: 0
+  value: 0,
+  billingPeriod: null
 };
 
 export default Price;

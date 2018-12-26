@@ -13,8 +13,8 @@
     "name": "Team",
     "product_id": 1,
     "pricing": {
-      "month": 19,
-      "year": 25
+      "month": 25,
+      "year": 19
     }
   },
   {
@@ -22,8 +22,8 @@
     "name": "Professional",
     "product_id": 1,
     "pricing": {
-      "month": 49,
-      "year": 59
+      "month": 59,
+      "year": 49
     }
   },
   {
@@ -31,8 +31,8 @@
     "name": "Enterprise",
     "product_id": 1,
     "pricing": {
-      "month": 99,
-      "year": 125
+      "month": 125,
+      "year": 99
     }
   },
   {
@@ -49,8 +49,8 @@
     "name": "Professional",
     "product_id": 2,
     "pricing": {
-      "month": 15,
-      "year": 19
+      "month": 19,
+      "year": 15
     }
   },
   {
@@ -58,8 +58,8 @@
     "name": "Enterprise",
     "product_id": 2,
     "pricing": {
-      "month": 29,
-      "year": 34
+      "month": 34,
+      "year": 29
     }
   },
   {
@@ -76,8 +76,8 @@
     "name": "Team",
     "product_id": 3,
     "pricing": {
-      "month": 14,
-      "year": 19
+      "month": 19,
+      "year": 14
     }
   },
   {
@@ -85,8 +85,8 @@
     "name": "Professional",
     "product_id": 3,
     "pricing": {
-      "month": 29,
-      "year": 35
+      "month": 35,
+      "year": 29
     }
   },
   {
@@ -94,8 +94,8 @@
     "name": "Enterprise",
     "product_id": 3,
     "pricing": {
-      "month": 59,
-      "year": 70
+      "month": 70,
+      "year": 59
     }
   }
 ]

@@ -3,6 +3,11 @@ import Price from "./Price";
 import plansData from "../data/plans.json";
 import "./ProductCard.css";
 
+const BILLING_PERIOD_MONTHS = {
+  month: 1,
+  year: 12
+};
+
 class ProductCard extends React.Component {
   state = {
     quantity: 1,
@@ -42,8 +47,11 @@ class ProductCard extends React.Component {
       return;
     }
 
-    const { selectedPlan, billingPeriod } = this.state;
-    const price = this.calculatePrice(quantity, selectedPlan, billingPeriod);
+    const price = this.calculatePrice(
+      quantity,
+      this.state.selectedPlan,
+      this.props.billingPeriod
+    );
 
     this.setState({ quantity, price }, this.onChange);
   };
@@ -62,10 +70,11 @@ class ProductCard extends React.Component {
   };
 
   onChange() {
-    const { quantity, selectedPlan, price } = this.state;
-    const { product, onChange } = this.props;
+    const { quantity, selectedPlan } = this.state;
+    const { product, onChange, billingPeriod } = this.props;
     const productId = product.id;
     const name = `${product.name} ${selectedPlan.name}`;
+    const price = this.state.price * BILLING_PERIOD_MONTHS[billingPeriod];
 
     onChange({ name, quantity, price, productId });
   }
@@ -113,7 +122,11 @@ class ProductCard extends React.Component {
             </div>
           </div>
           <div className="column price">
-            <Price value={this.state.price} showFree={true} />
+            <Price
+              value={this.state.price}
+              showFree={true}
+              billingPeriod="month"
+            />
           </div>
         </div>
       </div>

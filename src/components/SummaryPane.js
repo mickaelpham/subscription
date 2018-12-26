@@ -51,7 +51,10 @@ class SummaryPane extends React.Component {
           <div className="columns has-text-weight-bold">
             <div className="column">Total</div>
             <div className="column has-text-right">
-              <Price value={totalPrice} />
+              <Price
+                value={totalPrice}
+                billingPeriod={this.state.billingPeriod}
+              />
             </div>
           </div>
         </div>
